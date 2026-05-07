@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../styles/AccesibilityDropdown.css"
+import "../styles/AcessibilityDropdown.css";
 
 const DEFAULT_SETTINGS = {
   audioDescription: false,
