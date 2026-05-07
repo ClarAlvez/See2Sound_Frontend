@@ -1,0 +1,75 @@
+.animated-waves {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.wave-row {
+  position: absolute;
+  left: 0;
+
+  display: flex;
+  width: 200vw;
+}
+
+.wave-row-top {
+  top: 10vh;
+  height: 42vh;
+  animation: wavesMoveLeft 26s linear infinite;
+}
+
+.wave-row-bottom {
+  bottom: 4vh;
+  height: 38vh;
+  animation: wavesMoveRight 31s linear infinite;
+}
+
+.wave-copy {
+  width: 100vw;
+  height: 100%;
+  flex-shrink: 0;
+}
+
+.animated-wave-svg {
+  width: 100%;
+  height: 100%;
+
+  fill: none;
+  stroke: rgba(145, 45, 255, 0.82);
+  stroke-width: 1.2;
+  overflow: visible;
+}
+
+.animated-wave-svg path {
+  filter: drop-shadow(0 0 5px rgba(145, 45, 255, 0.45));
+}
+
+.top-wave {
+  opacity: 0.95;
+}
+
+.bottom-wave {
+  opacity: 0.78;
+}
+
+@keyframes wavesMoveLeft {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-100vw);
+  }
+}
+
+@keyframes wavesMoveRight {
+  from {
+    transform: translateX(-100vw);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}

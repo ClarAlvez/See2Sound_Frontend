@@ -1,0 +1,29 @@
+.download-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at center, rgba(118, 40, 255, 0.22), transparent 42%),
+    #050008;
+}
+
+.download-content {
+  min-height: 100vh;
+  padding: 120px 32px 40px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.download-content h1 {
+  margin-bottom: 16px;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+}
+
+.download-content p {
+  max-width: 560px;
+  color: #e6ddff;
+  font-size: 1.1rem;
+}

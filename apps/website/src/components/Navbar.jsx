@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import AccessibilityDropdown from "./AccessibilityDropdown";
 import logo from "../assets/logo.png";
+import "../styles/Navbar.css";
 
 function Navbar() {
   return (

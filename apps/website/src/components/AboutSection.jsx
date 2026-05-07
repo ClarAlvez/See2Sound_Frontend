@@ -1,4 +1,6 @@
 import AboutLiquidBackground from "./AboutLiquidBackground";
+import "../styles/AboutSection.css"
+
 
 function AboutSection() {
   return (

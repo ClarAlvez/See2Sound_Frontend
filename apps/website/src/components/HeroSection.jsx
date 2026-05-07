@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import LineWaves from "./LineWaves";
+import "../styles/HeroSection.css"
 
 function HeroSection() {
   return (
