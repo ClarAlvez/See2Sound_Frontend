@@ -1,28 +1,38 @@
 import { Link } from "react-router-dom";
+import { ChevronDown } from "lucide-react";
 import LineWaves from "./LineWaves";
-import "../styles/HeroSection.css"
+import "../styles/HeroSection.css";
 
 function HeroSection() {
+  function scrollToAbout() {
+    const aboutSection = document.getElementById("sobre");
+
+    if (aboutSection) {
+      aboutSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }
+
   return (
     <section className="hero-section">
       <div className="hero-line-waves">
-        <div style={{ width: '1080px', height: '1080px', position: 'relative' }}>
-            <LineWaves
-                speed={0.2}
-                innerLineCount={36}
-                outerLineCount={36}
-                warpIntensity={1.4}
-                rotation={-27}
-                edgeFadeWidth={0.05}
-                colorCycleSpeed={2.9}
-                brightness={0.2}
-                color1="#8E26CF"
-                color2="#5525CE"
-                color3="#2500DE"
-                enableMouseInteraction
-                mouseInfluence={1}
-            />
-        </div>
+        <LineWaves
+          speed={0.2}
+          innerLineCount={36}
+          outerLineCount={22}
+          warpIntensity={0.9}
+          rotation={-27}
+          edgeFadeWidth={0.05}
+          colorCycleSpeed={1.1}
+          brightness={0.2}
+          color1="#8E26CF"
+          color2="#5525CE"
+          color3="#2500DE"
+          enableMouseInteraction={false}
+          mouseInfluence={1}
+        />
       </div>
 
       <div className="hero-content">
@@ -36,10 +46,24 @@ function HeroSection() {
           conteúdos audiovisuais utilizando inteligência artificial.
         </p>
 
-        <Link to="/download" className="hero-button">
+        <button
+          className="hero-button"
+          onClick={() => {
+            window.location.href = "/download";
+          }}
+        >
           Experimente o See2Sound
-        </Link>
+        </button>
       </div>
+
+      <button
+        className="hero-scroll-indicator"
+        onClick={scrollToAbout}
+        aria-label="Ir para a próxima seção"
+      >
+        <span>Role para explorar</span>
+        <ChevronDown size={34} strokeWidth={2.4} />
+      </button>
     </section>
   );
 }

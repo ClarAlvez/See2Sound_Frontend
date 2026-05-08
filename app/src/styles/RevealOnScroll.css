@@ -1,0 +1,38 @@
+.reveal-on-scroll {
+  opacity: 0;
+  transition:
+    opacity 0.75s ease,
+    transform 0.75s ease;
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.reveal-up {
+  transform: translate3d(0, 48px, 0);
+}
+
+.reveal-down {
+  transform: translate3d(0, -48px, 0);
+}
+
+.reveal-left {
+  transform: translate3d(-48px, 0, 0);
+}
+
+.reveal-right {
+  transform: translate3d(48px, 0, 0);
+}
+
+.reveal-scale {
+  transform: scale(0.94);
+}
+
+body.reduce-motion .reveal-on-scroll {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}

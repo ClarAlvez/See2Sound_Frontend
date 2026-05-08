@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../styles/AcessibilityDropdown.css";
+import "../styles/AccessibilityDropdown.css";
 
 const DEFAULT_SETTINGS = {
   audioDescription: false,
@@ -8,18 +8,29 @@ const DEFAULT_SETTINGS = {
   highContrast: false,
   visualFocus: false,
   textSize: 100,
+  reduceMotion: false,
+  disableBackgroundEffects: false,
+  softBackgroundEffects: false,
 };
 
 function AccessibilityDropdown() {
   const [isOpen, setIsOpen] = useState(false);
+
   const [settings, setSettings] = useState(() => {
     const savedSettings = localStorage.getItem("see2sound-accessibility");
 
-    if (savedSettings) {
-      return JSON.parse(savedSettings);
+    if (!savedSettings) {
+      return DEFAULT_SETTINGS;
     }
 
-    return DEFAULT_SETTINGS;
+    try {
+      return {
+        ...DEFAULT_SETTINGS,
+        ...JSON.parse(savedSettings),
+      };
+    } catch {
+      return DEFAULT_SETTINGS;
+    }
   });
 
   useEffect(() => {
@@ -27,6 +38,15 @@ function AccessibilityDropdown() {
 
     document.body.classList.toggle("high-contrast", settings.highContrast);
     document.body.classList.toggle("visual-focus", settings.visualFocus);
+    document.body.classList.toggle("reduce-motion", settings.reduceMotion);
+    document.body.classList.toggle(
+      "disable-background-effects",
+      settings.disableBackgroundEffects
+    );
+    document.body.classList.toggle(
+      "soft-background-effects",
+      settings.softBackgroundEffects
+    );
 
     document.documentElement.style.setProperty(
       "--accessibility-font-scale",
@@ -128,7 +148,7 @@ function AccessibilityDropdown() {
             <label className="accessibility-option">
               <div>
                 <strong>Alto Contraste</strong>
-                <span>Aumenta a diferença entre fundo e texto.</span>
+                <span>Aumenta contraste entre fundo, texto e botões.</span>
               </div>
 
               <input
@@ -144,7 +164,7 @@ function AccessibilityDropdown() {
             <label className="accessibility-option">
               <div>
                 <strong>Foco Visual</strong>
-                <span>Destaca elementos ao navegar pelo teclado.</span>
+                <span>Destaca links, botões e campos ao navegar por teclado.</span>
               </div>
 
               <input
@@ -166,11 +186,59 @@ function AccessibilityDropdown() {
               <input
                 type="range"
                 min="90"
-                max="130"
+                max="140"
                 step="5"
                 value={settings.textSize}
                 onChange={(event) =>
                   updateSetting("textSize", Number(event.target.value))
+                }
+              />
+            </label>
+
+            <label className="accessibility-option">
+              <div>
+                <strong>Reduzir Animações</strong>
+                <span>Remove transições, movimentos e animações decorativas.</span>
+              </div>
+
+              <input
+                type="checkbox"
+                className="toggle-input"
+                checked={settings.reduceMotion}
+                onChange={(event) =>
+                  updateSetting("reduceMotion", event.target.checked)
+                }
+              />
+            </label>
+
+            <label className="accessibility-option">
+              <div>
+                <strong>Reduzir Fundos Animados</strong>
+                <span>Diminui a intensidade visual dos efeitos de fundo.</span>
+              </div>
+
+              <input
+                type="checkbox"
+                className="toggle-input"
+                checked={settings.softBackgroundEffects}
+                onChange={(event) =>
+                  updateSetting("softBackgroundEffects", event.target.checked)
+                }
+              />
+            </label>
+
+            <label className="accessibility-option">
+              <div>
+                <strong>Remover Efeitos de Fundo</strong>
+                <span>Oculta fundos animados como ondas, líquido e threads.</span>
+              </div>
+
+              <input
+                type="checkbox"
+                className="toggle-input"
+                checked={settings.disableBackgroundEffects}
+                onChange={(event) =>
+                  updateSetting("disableBackgroundEffects", event.target.checked)
                 }
               />
             </label>

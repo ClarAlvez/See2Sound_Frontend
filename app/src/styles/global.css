@@ -303,3 +303,178 @@ body.visual-focus input:focus {
     line-height: 1.55;
   }
 }
+
+.home-page {
+  position: relative;
+  background: #050008;
+  overflow-x: hidden;
+}
+
+.page-section {
+  position: relative;
+  min-height: 100vh;
+  z-index: 1;
+}
+
+.section-overlap {
+  margin-top: -12vh;
+  border-radius: 42px 42px 0 0;
+  overflow: hidden;
+}
+
+.section-layer-1 {
+  z-index: 1;
+}
+
+.section-layer-2 {
+  z-index: 2;
+}
+
+.section-layer-3 {
+  z-index: 3;
+}
+
+.section-layer-4 {
+  z-index: 4;
+}
+
+:root {
+  --accessibility-font-scale: 100%;
+}
+
+body {
+  font-size: var(--accessibility-font-scale);
+}
+
+/* ========================= */
+/* Accessibility: High Contrast */
+/* ========================= */
+
+body.high-contrast {
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+body.high-contrast .navbar,
+body.high-contrast .footer,
+body.high-contrast .hero-section,
+body.high-contrast .about-section,
+body.high-contrast .how-it-works-section,
+body.high-contrast .why-use-section,
+body.high-contrast .download-page,
+body.high-contrast .download-hero {
+  background: #000000 !important;
+}
+
+body.high-contrast .navbar {
+  border-bottom: 2px solid #ffffff !important;
+}
+
+body.high-contrast .footer {
+  border-top: 2px solid #ffffff !important;
+}
+
+body.high-contrast a,
+body.high-contrast button,
+body.high-contrast p,
+body.high-contrast span,
+body.high-contrast h1,
+body.high-contrast h2,
+body.high-contrast h3 {
+  color: #ffffff !important;
+}
+
+body.high-contrast .hero-button,
+body.high-contrast .download-card-button.is-primary,
+body.high-contrast .reset-accessibility {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border-color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+body.high-contrast .download-card,
+body.high-contrast .why-use-card,
+body.high-contrast .how-it-works-card,
+body.high-contrast .accessibility-panel,
+body.high-contrast .accessibility-option {
+  background: #000000 !important;
+  border: 1px solid #ffffff !important;
+  box-shadow: none !important;
+}
+
+/* ========================= */
+/* Accessibility: Visual Focus */
+/* ========================= */
+
+body.visual-focus a:focus-visible,
+body.visual-focus button:focus-visible,
+body.visual-focus input:focus-visible {
+  outline: 4px solid #ffffff !important;
+  outline-offset: 4px !important;
+  box-shadow: 0 0 0 8px rgba(155, 54, 255, 0.75) !important;
+}
+
+/* ========================= */
+/* Accessibility: Reduce Motion */
+/* ========================= */
+
+body.reduce-motion *,
+body.reduce-motion *::before,
+body.reduce-motion *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+
+body.reduce-motion .reveal-on-scroll {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* ========================= */
+/* Accessibility: Background Effects */
+/* ========================= */
+
+body.soft-background-effects .hero-line-waves,
+body.soft-background-effects .about-liquid-background,
+body.soft-background-effects .download-liquid-background,
+body.soft-background-effects .how-it-works-background,
+body.soft-background-effects .animated-waves {
+  opacity: 0.18 !important;
+  filter: saturate(0.55) brightness(0.65) !important;
+}
+
+body.disable-background-effects .hero-line-waves,
+body.disable-background-effects .about-liquid-background,
+body.disable-background-effects .download-liquid-background,
+body.disable-background-effects .how-it-works-background,
+body.disable-background-effects .animated-waves,
+body.disable-background-effects .download-background,
+body.disable-background-effects .footer-glow {
+  display: none !important;
+}
+
+body.disable-background-effects .hero-section,
+body.disable-background-effects .about-section,
+body.disable-background-effects .how-it-works-section,
+body.disable-background-effects .why-use-section,
+body.disable-background-effects .download-page,
+body.disable-background-effects .download-hero {
+  background:
+    radial-gradient(circle at center, rgba(100, 40, 180, 0.08), transparent 42%),
+    #050008 !important;
+}
+
+body.disable-background-effects .about-section::before,
+body.disable-background-effects .how-it-works-section::before,
+body.disable-background-effects .why-use-section::before,
+body.disable-background-effects .download-overlay {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5, 0, 8, 0.86),
+      rgba(5, 0, 8, 0.72),
+      rgba(5, 0, 8, 0.86)
+    ) !important;
+}

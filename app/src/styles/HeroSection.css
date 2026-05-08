@@ -93,3 +93,81 @@
   transform: translateY(-3px);
   box-shadow: 0 0 36px rgba(157, 74, 255, 0.8);
 }
+
+.hero-scroll-indicator {
+  position: absolute;
+  left: 50%;
+  bottom: 34px;
+  z-index: 6;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+
+  background: transparent;
+  border: none;
+
+  color: #ffffff;
+  cursor: pointer;
+
+  opacity: 0.78;
+
+  animation: heroArrowFloat 1.8s ease-in-out infinite;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+.hero-scroll-indicator span {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: #cdb9ff;
+  text-shadow: 0 0 12px rgba(155, 54, 255, 0.65);
+}
+
+.hero-scroll-indicator svg {
+  filter: drop-shadow(0 0 12px rgba(155, 54, 255, 0.8));
+}
+
+.hero-scroll-indicator:hover {
+  opacity: 1;
+  color: #a855ff;
+}
+
+.hero-scroll-indicator:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 6px;
+  border-radius: 999px;
+}
+
+@keyframes heroArrowFloat {
+  0% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(10px);
+  }
+
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-scroll-indicator {
+    bottom: 24px;
+  }
+
+  .hero-scroll-indicator span {
+    font-size: 0.68rem;
+  }
+}

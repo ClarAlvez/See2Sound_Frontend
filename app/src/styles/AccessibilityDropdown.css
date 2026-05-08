@@ -1,11 +1,3 @@
-:root {
-  --accessibility-font-scale: 100%;
-}
-
-body {
-  font-size: var(--accessibility-font-scale);
-}
-
 .accessibility-dropdown {
   position: relative;
 }
@@ -19,7 +11,10 @@ body {
   top: 44px;
   right: 0;
 
-  width: min(420px, calc(100vw - 32px));
+  width: min(440px, calc(100vw - 32px));
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
+
   padding: 22px;
 
   background:
@@ -33,7 +28,7 @@ body {
     0 24px 70px rgba(0, 0, 0, 0.65),
     0 0 32px rgba(117, 40, 255, 0.22);
 
-  z-index: 50;
+  z-index: 100;
 }
 
 .accessibility-header {
@@ -257,4 +252,15 @@ body {
 .reset-accessibility:hover {
   background: rgba(168, 85, 255, 0.18);
   border-color: rgba(168, 85, 255, 0.4);
+}
+
+@media (max-width: 768px) {
+  .accessibility-panel {
+    position: fixed;
+    top: 82px;
+    right: 16px;
+    left: 16px;
+
+    width: auto;
+  }
 }

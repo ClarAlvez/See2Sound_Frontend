@@ -4,7 +4,7 @@ function AboutLiquidBackground() {
   return (
     <div className="about-liquid-background">
       <LiquidEther
-        colors={["#8E26CF", "#5525CE", "#2500DE"]}
+        colors={["#8E26CF", "#5525CE"]}
         mouseForce={24}
         cursorSize={140}
         isViscous={false}

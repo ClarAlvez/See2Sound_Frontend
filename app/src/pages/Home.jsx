@@ -1,6 +1,10 @@
 import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
 import AboutSection from "../components/AboutSection";
+import HowItWorksSection from "../components/HowItWorksSection";
+import WhyUseSection from "../components/WhyUseSection";
+import Footer from "../components/Footer";
+
 
 function Home() {
   return (
@@ -8,6 +12,9 @@ function Home() {
       <Navbar />
       <HeroSection />
       <AboutSection />
+      <HowItWorksSection />
+      <WhyUseSection />
+      <Footer />
     </main>
   );
 }

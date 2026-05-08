@@ -1,6 +1,6 @@
 import AboutLiquidBackground from "./AboutLiquidBackground";
-import "../styles/AboutSection.css"
-
+import RevealOnScroll from "./RevealOnScroll";
+import "../styles/AboutSection.css";
 
 function AboutSection() {
   return (
@@ -8,17 +8,23 @@ function AboutSection() {
       <AboutLiquidBackground />
 
       <div className="about-container">
-        <span className="about-eyebrow">Sobre o projeto</span>
+        <RevealOnScroll direction="up">
+          <span className="about-eyebrow">Sobre o projeto</span>
+        </RevealOnScroll>
 
-        <h2 className="about-title">Sobre Nós</h2>
+        <RevealOnScroll direction="up" delay={120}>
+          <h2 className="about-title">Sobre Nós</h2>
+        </RevealOnScroll>
 
-        <p className="about-text">
-          O See2Sound é uma aplicação inovadora que utiliza inteligência
-          artificial para criar audiodescrições contextuais de conteúdos
-          audiovisuais. Nosso objetivo é tornar vídeos, filmes e outros meios
-          visuais mais acessíveis para pessoas com deficiência visual,
-          permitindo que elas também possam compreender histórias através do som.
-        </p>
+        <RevealOnScroll direction="up" delay={220}>
+          <p className="about-text">
+            O See2Sound é uma aplicação inovadora que utiliza inteligência
+            artificial para criar audiodescrições contextuais de conteúdos
+            audiovisuais. Nosso objetivo é tornar vídeos, filmes e outros meios
+            visuais mais acessíveis para pessoas com deficiência visual,
+            permitindo que elas também possam compreender histórias através do som.
+          </p>
+        </RevealOnScroll>
       </div>
     </section>
   );
