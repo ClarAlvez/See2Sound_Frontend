@@ -5,7 +5,6 @@ import "../styles/AboutSection.css";
 function AboutSection() {
   return (
     <section className="about-section" id="sobre">
-      {/* <AboutLiquidBackground /> */}
 
       <div className="about-container">
         <RevealOnScroll direction="up">

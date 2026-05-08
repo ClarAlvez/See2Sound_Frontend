@@ -30,7 +30,6 @@ const reasons = [
 function WhyUseSection() {
   return (
     <section className="why-use-section" id="por-que-usar">
-      {/* <HowItWorksBackground /> */}
 
       <div className="why-use-container">
         <div className="why-use-header">

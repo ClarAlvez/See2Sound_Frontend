@@ -12,7 +12,7 @@ const emails = [
 const githubLinks = [
   {
     label: "Clara Alves",
-    url: "https://github.com/ClaraAlvez",
+    url: "https://github.com/ClarAlvez",
   },
   {
     label: "João Cussolim",
