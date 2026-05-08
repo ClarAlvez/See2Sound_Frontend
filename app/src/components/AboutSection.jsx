@@ -1,4 +1,3 @@
-import AboutLiquidBackground from "./AboutLiquidBackground";
 import RevealOnScroll from "./RevealOnScroll";
 import "../styles/AboutSection.css";
 

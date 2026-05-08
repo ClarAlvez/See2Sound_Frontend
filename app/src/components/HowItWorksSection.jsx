@@ -1,9 +1,6 @@
 import { Upload, Network, Headphones } from "lucide-react";
-import HowItWorksBackground from "./HowItWorksBackground";
 import RevealOnScroll from "./RevealOnScroll";
 import "../styles/HowItWorksSection.css";
-import AboutLiquidBackground from "./AboutLiquidBackground";
-
 const steps = [
   {
     number: "1",

@@ -1,5 +1,4 @@
 import { EyeOff, CircleDollarSign, Code2 } from "lucide-react";
-import HowItWorksBackground from "./HowItWorksBackground";
 import RevealOnScroll from "./RevealOnScroll";
 import "../styles/WhyUseSection.css";
 
