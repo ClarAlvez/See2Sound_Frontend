@@ -1,5 +1,5 @@
 import { Apple, Download as DownloadIcon, Monitor, Laptop } from "lucide-react";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/NavBar";
 import Footer from "../components/Footer";
 import DownloadLiquidBackground from "../components/DownloadLiquidBackground";
 import "../styles/Download.css";
