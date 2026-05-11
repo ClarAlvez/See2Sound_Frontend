@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import LineWaves from "./LineWaves";
 import "../styles/HeroSection.css";
@@ -14,6 +14,11 @@ function HeroSection() {
       });
     }
   }
+
+    const navigate = useNavigate();
+    function handleClick(){
+      navigate('/download');
+    }
 
   return (
     <section className="hero-section">
@@ -48,9 +53,7 @@ function HeroSection() {
 
         <button
           className="hero-button"
-          onClick={() => {
-            window.location.href = "/download";
-          }}
+          onClick={handleClick}
         >
           Experimente o See2Sound
         </button>
