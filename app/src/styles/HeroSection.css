@@ -1,7 +1,9 @@
 .hero-section {
   position: relative;
   min-height: 100vh;
-  padding-top: 76px;
+  padding-top: 80px;
+  padding-bottom: clamp(80px, 12svh, 130px);
+
 
   display: flex;
   align-items: center;
@@ -97,7 +99,12 @@
 .hero-scroll-indicator {
   position: absolute;
   left: 50%;
-  bottom: 34px;
+
+  bottom: max(
+    clamp(18px, 4svh, 44px),
+    env(safe-area-inset-bottom)
+  );
+
   z-index: 6;
 
   transform: translateX(-50%);
@@ -124,7 +131,7 @@
 }
 
 .hero-scroll-indicator span {
-  font-size: 0.78rem;
+  font-size: clamp(0.62rem, 1.2vw, 0.78rem);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -134,6 +141,9 @@
 }
 
 .hero-scroll-indicator svg {
+  width: clamp(26px, 4vw, 34px);
+  height: clamp(26px, 4vw, 34px);
+
   filter: drop-shadow(0 0 12px rgba(155, 54, 255, 0.8));
 }
 
