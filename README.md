@@ -6,7 +6,7 @@ This repository contains the official website for the project, responsible for p
 
 ---
 
-# 🎯 Purpose
+## 🎯 Purpose
 
 The frontend provides an **accessible interface** where users can:
 
@@ -18,7 +18,7 @@ The frontend provides an **accessible interface** where users can:
 
 ---
 
-# 🧠 System Role
+## 🧠 System Role
 
 The frontend is responsible for:
 
@@ -30,8 +30,9 @@ The frontend is responsible for:
 
 ---
 
-# ⚙️ System Flow
+## ⚙️ System Flow
 
+```text
 User
 ↓
 Frontend Website
@@ -45,10 +46,11 @@ Backend API
 AI Processing
 ↓
 Audio Description Generation
+```
 
 ---
 
-# 🛠 Technologies
+## 🛠 Technologies
 
 Main technologies used:
 
@@ -60,7 +62,7 @@ Main technologies used:
 
 ---
 
-# 📦 Project Structure
+## 📦 Project Structure
 
 ```bash
 see2sound-frontend/
@@ -85,7 +87,7 @@ see2sound-frontend/
 
 ---
 
-# ♿ Accessibility
+## ♿ Accessibility
 
 Accessibility is a key aspect of the project.  
 The interface will be designed to support:
@@ -100,7 +102,7 @@ The interface will be designed to support:
 
 ---
 
-# 🚧 Development Status
+## 🚧 Development Status
 
 Frontend currently under development as part of the **See2Sound Project**.
 
@@ -120,7 +122,7 @@ This project is part of the **See2Sound system**.
 
 ---
 
-# 👨‍💻 Authors
+## 👨‍💻 Authors
 
 Developed as part of the **See2Sound Project**.
 
