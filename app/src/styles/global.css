@@ -338,12 +338,11 @@ body.visual-focus input:focus {
   z-index: 4;
 }
 
-:root {
-  --accessibility-font-scale: 100%;
-}
-
 body {
-  font-size: var(--accessibility-font-scale);
+  font-family: Arial, Helvetica, sans-serif;
+  background: #050008;
+  color: #ffffff;
+  overflow-x: hidden;
 }
 
 /* ========================= */

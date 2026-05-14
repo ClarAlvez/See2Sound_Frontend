@@ -39,19 +39,18 @@ function AccessibilityDropdown() {
     document.body.classList.toggle("high-contrast", settings.highContrast);
     document.body.classList.toggle("visual-focus", settings.visualFocus);
     document.body.classList.toggle("reduce-motion", settings.reduceMotion);
+
     document.body.classList.toggle(
       "disable-background-effects",
       settings.disableBackgroundEffects
     );
+
     document.body.classList.toggle(
       "soft-background-effects",
       settings.softBackgroundEffects
     );
 
-    document.documentElement.style.setProperty(
-      "--accessibility-font-scale",
-      `${settings.textSize}%`
-    );
+    document.documentElement.style.fontSize = `${settings.textSize}%`;
   }, [settings]);
 
   function updateSetting(key, value) {
@@ -63,6 +62,7 @@ function AccessibilityDropdown() {
 
   function resetSettings() {
     setSettings(DEFAULT_SETTINGS);
+    document.documentElement.style.fontSize = "100%";
   }
 
   return (
