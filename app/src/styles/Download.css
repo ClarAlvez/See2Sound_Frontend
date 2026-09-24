@@ -218,10 +218,6 @@
     background 0.2s ease;
 }
 
-button.download-card-button {
-  font-size: 1rem;
-}
-
 .download-card-button.is-primary {
   color: #ffffff;
   background: linear-gradient(135deg, #9b36ff, #4c00ff);
@@ -238,8 +234,7 @@ button.download-card-button {
   color: #b8aacd;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  cursor: not-allowed;
-  opacity: 0.82;
+  pointer-events: none;
 }
 
 @media (max-width: 960px) {

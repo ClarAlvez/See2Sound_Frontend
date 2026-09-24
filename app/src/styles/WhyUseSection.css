@@ -102,13 +102,10 @@
 }
 
 .why-use-reasons {
-  margin: 0;
-  padding: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 42px;
   align-items: start;
-  list-style: none;
 }
 
 .why-use-card {

@@ -3,7 +3,7 @@ import "../styles/AboutSection.css";
 
 function AboutSection() {
   return (
-    <section className="about-section" id="sobre" aria-labelledby="sobre-titulo" tabIndex="-1">
+    <section className="about-section" id="sobre">
 
       <div className="about-container">
         <RevealOnScroll direction="up">
@@ -11,7 +11,7 @@ function AboutSection() {
         </RevealOnScroll>
 
         <RevealOnScroll direction="up" delay={120}>
-          <h2 className="about-title" id="sobre-titulo">Sobre nós</h2>
+          <h2 className="about-title">Sobre Nós</h2>
         </RevealOnScroll>
 
         <RevealOnScroll direction="up" delay={220}>
