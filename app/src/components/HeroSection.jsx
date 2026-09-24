@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import LineWaves from "./LineWaves";
 import "../styles/HeroSection.css";
@@ -9,20 +9,17 @@ function HeroSection() {
 
     if (aboutSection) {
       aboutSection.scrollIntoView({
-        behavior: "smooth",
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
         block: "start",
       });
     }
   }
 
-    const navigate = useNavigate();
-    function handleClick(){
-      navigate('/download');
-    }
-
   return (
-    <section className="hero-section">
-      <div className="hero-line-waves">
+    <section className="hero-section" aria-labelledby="titulo-principal">
+      <div className="hero-line-waves" aria-hidden="true">
         <LineWaves
           speed={0.2}
           innerLineCount={36}
@@ -41,7 +38,7 @@ function HeroSection() {
       </div>
 
       <div className="hero-content">
-        <h1 className="hero-title">
+        <h1 className="hero-title" id="titulo-principal" tabIndex="-1">
           <span className="hero-line">Transformando o que você vê em</span>
           <span className="hero-line">algo que todos podem ouvir.</span>
         </h1>
@@ -51,12 +48,9 @@ function HeroSection() {
           conteúdos audiovisuais utilizando inteligência artificial.
         </p>
 
-        <button
-          className="hero-button"
-          onClick={handleClick}
-        >
+        <Link className="hero-button" to="/download">
           Experimente o See2Sound
-        </button>
+        </Link>
       </div>
 
       <button
@@ -65,7 +59,7 @@ function HeroSection() {
         aria-label="Ir para a próxima seção"
       >
         <span>Role para explorar</span>
-        <ChevronDown size={34} strokeWidth={2.4} />
+        <ChevronDown size={34} strokeWidth={2.4} aria-hidden="true" />
       </button>
     </section>
   );

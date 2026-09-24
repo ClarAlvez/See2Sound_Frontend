@@ -8,14 +8,16 @@ import Footer from "../components/Footer";
 
 function Home() {
   return (
-    <main className="home-page">
+    <>
       <Navbar />
-      <HeroSection />
-      <AboutSection />
-      <HowItWorksSection />
-      <WhyUseSection />
+      <main className="home-page" id="conteudo-principal" tabIndex="-1">
+        <HeroSection />
+        <AboutSection />
+        <HowItWorksSection />
+        <WhyUseSection />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }
 

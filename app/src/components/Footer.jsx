@@ -41,7 +41,7 @@ function Footer() {
       <div className="footer-container">
         <div className="footer-brand">
           <div className="footer-logo-row">
-            <img src={logo} alt="Logo do See2Sound" className="footer-logo" />
+            <img src={logo} alt="" className="footer-logo" aria-hidden="true" />
             <span>See2Sound</span>
           </div>
 
@@ -53,8 +53,8 @@ function Footer() {
         <div className="footer-content">
           <section className="footer-column">
             <div className="footer-column-title">
-              <FaGoogle size={20} />
-              <h3>Contato</h3>
+              <FaGoogle size={20} aria-hidden="true" />
+              <h2>Contato</h2>
             </div>
 
             <ul>
@@ -62,7 +62,7 @@ function Footer() {
                 <li key={email}>
                   <a href={`mailto:${email}`}>
                     {email}
-                    <Mail size={13} />
+                    <Mail size={13} aria-hidden="true" />
                   </a>
                 </li>
               ))}
@@ -71,8 +71,8 @@ function Footer() {
 
           <section className="footer-column">
             <div className="footer-column-title">
-              <FaGithub size={22} />
-              <h3>GitHub</h3>
+              <FaGithub size={22} aria-hidden="true" />
+              <h2>GitHub</h2>
             </div>
 
             <ul>
@@ -80,7 +80,8 @@ function Footer() {
                 <li key={link.url}>
                   <a href={link.url} target="_blank" rel="noreferrer">
                     {link.label}
-                    <ExternalLink size={13} />
+                    <ExternalLink size={13} aria-hidden="true" />
+                    <span className="sr-only"> (abre em nova aba)</span>
                   </a>
                 </li>
               ))}
@@ -89,8 +90,8 @@ function Footer() {
 
           <section className="footer-column">
             <div className="footer-column-title">
-              <FaInstagram size={22} />
-              <h3>Instagram</h3>
+              <FaInstagram size={22} aria-hidden="true" />
+              <h2>Instagram</h2>
             </div>
 
             <ul>
@@ -98,7 +99,8 @@ function Footer() {
                 <li key={link.url}>
                   <a href={link.url} target="_blank" rel="noreferrer">
                     {link.label}
-                    <ExternalLink size={13} />
+                    <ExternalLink size={13} aria-hidden="true" />
+                    <span className="sr-only"> (abre em nova aba)</span>
                   </a>
                 </li>
               ))}

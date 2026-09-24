@@ -8,12 +8,12 @@ const platforms = [
   {
     name: "macOS",
     icon: Apple,
-    status: "Disponível agora",
+    status: "Em preparação",
     description:
-      "Baixe a versão para macOS e comece a experimentar o See2Sound.",
-    buttonLabel: "Download para macOS",
+      "A versão para macOS está sendo preparada e será disponibilizada em breve.",
+    buttonLabel: "Download ainda não disponível",
     primary: true,
-    href: "#",
+    available: false,
   },
   {
     name: "Windows",
@@ -22,7 +22,7 @@ const platforms = [
     description: "A versão para Windows estará disponível em breve.",
     buttonLabel: "Em breve",
     primary: false,
-    href: "#",
+    available: false,
   },
   {
     name: "Linux",
@@ -31,7 +31,7 @@ const platforms = [
     description: "Também estamos planejando suporte para Linux.",
     buttonLabel: "Em breve",
     primary: false,
-    href: "#",
+    available: false,
   },
 ];
 
@@ -40,22 +40,23 @@ function Download() {
     <>
       <Navbar />
 
-      <main className="download-page">
-        <DownloadLiquidBackground />
+      <main className="download-page" id="conteudo-principal" tabIndex="-1">
+        <div aria-hidden="true">
+          <DownloadLiquidBackground />
+        </div>
 
         <section className="download-hero">
-          <div className="download-overlay" />
+          <div className="download-overlay" aria-hidden="true" />
 
           <div className="download-content">
             <span className="download-eyebrow">Plataforma</span>
 
-            <h1 className="download-title">
-              Baixe o <span>See2Sound</span> e transforme imagem em som
+            <h1 className="download-title" tabIndex="-1">
+              <span>See2Sound</span> para sua plataforma
             </h1>
 
             <p className="download-subtitle">
-              Escolha sua plataforma e acesse uma experiência mais acessível,
-              inteligente e inclusiva.
+              Acompanhe a disponibilidade do aplicativo em cada sistema operacional.
             </p>
 
             <div className="download-cards">
@@ -71,7 +72,7 @@ function Download() {
                   >
                     <div className="download-card-header">
                       <div className="download-card-icon">
-                        <Icon size={28} />
+                        <Icon size={28} aria-hidden="true" />
                       </div>
 
                       <div>
@@ -84,15 +85,14 @@ function Download() {
                       {platform.description}
                     </p>
 
-                    <a
-                      href={platform.href}
-                      className={`download-card-button ${
-                        platform.primary ? "is-primary" : "is-disabled"
-                      }`}
+                    <button
+                      type="button"
+                      className="download-card-button is-disabled"
+                      disabled={!platform.available}
                     >
-                      <DownloadIcon size={18} />
+                      <DownloadIcon size={18} aria-hidden="true" />
                       {platform.buttonLabel}
-                    </a>
+                    </button>
                   </article>
                 );
               })}
