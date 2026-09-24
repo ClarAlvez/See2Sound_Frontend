@@ -28,7 +28,7 @@ const reasons = [
 
 function WhyUseSection() {
   return (
-    <section className="why-use-section" id="por-que-usar">
+    <section className="why-use-section" id="por-que-usar" aria-labelledby="beneficios-titulo" tabIndex="-1">
 
       <div className="why-use-container">
         <div className="why-use-header">
@@ -37,7 +37,7 @@ function WhyUseSection() {
           </RevealOnScroll>
 
           <RevealOnScroll direction="up" delay={120}>
-            <h2 className="why-use-title">Por que usar?</h2>
+            <h2 className="why-use-title" id="beneficios-titulo">Por que usar?</h2>
           </RevealOnScroll>
 
           <RevealOnScroll direction="up" delay={220}>
@@ -48,31 +48,30 @@ function WhyUseSection() {
           </RevealOnScroll>
         </div>
 
-        <div className="why-use-reasons">
+        <ol className="why-use-reasons" aria-label="Benefícios do See2Sound">
           {reasons.map((reason, index) => {
             const Icon = reason.icon;
 
             return (
-              <RevealOnScroll
-                key={reason.number}
-                direction="up"
-                delay={index * 140}
-              >
-                <article className="why-use-card">
-                  <div className="why-use-icon-wrapper">
-                    <Icon className="why-use-icon" strokeWidth={2.2} />
-                  </div>
+              <li key={reason.number}>
+                <RevealOnScroll direction="up" delay={index * 140}>
+                  <article className="why-use-card">
+                    <div className="why-use-icon-wrapper">
+                      <Icon className="why-use-icon" strokeWidth={2.2} aria-hidden="true" />
+                    </div>
 
-                  <h3 className="why-use-card-title">
-                    <span>{reason.number}.</span> {reason.title}
-                  </h3>
+                    <h3 className="why-use-card-title">
+                      <span aria-hidden="true">{reason.number}.</span>
+                      <span className="sr-only">Benefício {reason.number}: </span> {reason.title}
+                    </h3>
 
-                  <p className="why-use-card-text">{reason.description}</p>
-                </article>
-              </RevealOnScroll>
+                    <p className="why-use-card-text">{reason.description}</p>
+                  </article>
+                </RevealOnScroll>
+              </li>
             );
           })}
-        </div>
+        </ol>
       </div>
     </section>
   );

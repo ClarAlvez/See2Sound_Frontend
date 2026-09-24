@@ -4,6 +4,7 @@
 
 .accessibility-trigger {
   position: relative;
+  gap: 7px;
 }
 
 .accessibility-panel {
@@ -55,6 +56,13 @@
   font-size: 1.8rem;
   line-height: 1;
   color: #ffffff;
+}
+
+.accessibility-intro {
+  margin: -2px 0 18px;
+  color: #e4daf7;
+  font-size: 0.92rem;
+  line-height: 1.55;
 }
 
 .accessibility-close {
@@ -110,6 +118,10 @@
   border-color: rgba(168, 85, 255, 0.28);
 }
 
+.accessibility-option-copy {
+  display: block;
+}
+
 .accessibility-option strong {
   display: block;
   margin-bottom: 4px;
@@ -140,6 +152,11 @@
 .range-option > div span {
   color: #ffffff;
   font-weight: 700;
+}
+
+.range-option output {
+  color: #ffffff;
+  font-weight: 800;
 }
 
 /* Toggle */
@@ -255,12 +272,18 @@
 }
 
 @media (max-width: 768px) {
+  .accessibility-dropdown {
+    width: 100%;
+  }
+
   .accessibility-panel {
     position: fixed;
-    top: 82px;
+    top: 76px;
     right: 16px;
     left: 16px;
 
     width: auto;
+    max-height: calc(100dvh - 92px);
+    border-radius: 16px;
   }
 }

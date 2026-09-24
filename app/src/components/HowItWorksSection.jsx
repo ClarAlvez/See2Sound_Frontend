@@ -27,7 +27,7 @@ const steps = [
 
 function HowItWorksSection() {
   return (
-    <section className="how-it-works-section" id="como-funciona">
+    <section className="how-it-works-section" id="como-funciona" aria-labelledby="como-funciona-titulo" tabIndex="-1">
 
       <div className="how-it-works-container">
         <div className="how-it-works-header">
@@ -36,7 +36,7 @@ function HowItWorksSection() {
           </RevealOnScroll>
 
           <RevealOnScroll direction="up" delay={120}>
-            <h2 className="how-it-works-title">Como funciona?</h2>
+            <h2 className="how-it-works-title" id="como-funciona-titulo">Como funciona?</h2>
           </RevealOnScroll>
 
           <RevealOnScroll direction="up" delay={220}>
@@ -46,33 +46,32 @@ function HowItWorksSection() {
           </RevealOnScroll>
         </div>
 
-        <div className="how-it-works-steps">
+        <ol className="how-it-works-steps" aria-label="Etapas de funcionamento">
           {steps.map((step, index) => {
             const Icon = step.icon;
 
             return (
-              <RevealOnScroll
-                key={step.number}
-                direction="up"
-                delay={index * 140}
-              >
-                <article className="how-it-works-card">
-                  <div className="how-it-works-icon-wrapper">
-                    <Icon className="how-it-works-icon" strokeWidth={2.2} />
-                  </div>
+              <li key={step.number}>
+                <RevealOnScroll direction="up" delay={index * 140}>
+                  <article className="how-it-works-card">
+                    <div className="how-it-works-icon-wrapper">
+                      <Icon className="how-it-works-icon" strokeWidth={2.2} aria-hidden="true" />
+                    </div>
 
-                  <h3 className="how-it-works-card-title">
-                    <span>{step.number}.</span> {step.title}
-                  </h3>
+                    <h3 className="how-it-works-card-title">
+                      <span aria-hidden="true">{step.number}.</span>
+                      <span className="sr-only">Etapa {step.number}: </span> {step.title}
+                    </h3>
 
-                  <p className="how-it-works-card-text">
-                    {step.description}
-                  </p>
-                </article>
-              </RevealOnScroll>
+                    <p className="how-it-works-card-text">
+                      {step.description}
+                    </p>
+                  </article>
+                </RevealOnScroll>
+              </li>
             );
           })}
-        </div>
+        </ol>
       </div>
     </section>
   );

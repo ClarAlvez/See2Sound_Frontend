@@ -13,6 +13,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 88px;
 }
 
 body {
@@ -29,6 +30,39 @@ a {
 
 button {
   font-family: inherit;
+}
+
+button,
+a,
+input {
+  touch-action: manipulation;
+}
+
+:where(a, button, input, [tabindex]):focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px #6721ad;
+}
+
+:where(main, section, h1)[tabindex="-1"]:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+section[id] {
+  scroll-margin-top: 84px;
 }
 
 .placeholder-section {
@@ -78,6 +112,14 @@ body.high-contrast .hero-button {
   box-shadow: none;
 }
 
+body.high-contrast .about-section,
+body.high-contrast .how-it-works-section,
+body.high-contrast .why-use-section,
+body.high-contrast .download-hero,
+body.high-contrast .footer {
+  background: #000000 !important;
+}
+
 body.high-contrast .accessibility-panel {
   background: #000000;
   border: 2px solid #ffffff;
@@ -98,6 +140,38 @@ body.visual-focus input:focus {
   outline: 4px solid #ffffff;
   outline-offset: 4px;
   box-shadow: 0 0 0 8px rgba(155, 54, 255, 0.75);
+}
+
+body.readable-font,
+body.readable-font button,
+body.readable-font input {
+  font-family: Verdana, Tahoma, Arial, sans-serif !important;
+}
+
+body.text-spacing {
+  letter-spacing: 0.08em;
+  word-spacing: 0.12em;
+  line-height: 1.7;
+}
+
+body.text-spacing p,
+body.text-spacing li,
+body.text-spacing a,
+body.text-spacing button,
+body.text-spacing label,
+body.text-spacing span {
+  line-height: 1.7 !important;
+}
+
+body.underline-links a:not(.hero-button):not(.skip-link) {
+  text-decoration: underline !important;
+  text-decoration-thickness: 2px !important;
+  text-underline-offset: 0.2em !important;
+}
+
+body.large-cursor,
+body.large-cursor * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath fill='white' stroke='black' stroke-width='2' d='M3 2v23l6-6 4 10 5-2-4-9h9z'/%3E%3C/svg%3E") 3 2, auto !important;
 }
 
 @media (max-width: 1100px) {
@@ -476,4 +550,24 @@ body.disable-background-effects .download-overlay {
       rgba(5, 0, 8, 0.72),
       rgba(5, 0, 8, 0.86)
     ) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

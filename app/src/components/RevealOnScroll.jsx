@@ -8,12 +8,18 @@ function RevealOnScroll({
   className = "",
 }) {
   const elementRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(
+    () => !("IntersectionObserver" in window)
+  );
 
   useEffect(() => {
     const element = elementRef.current;
 
     if (!element) return;
+
+    if (!("IntersectionObserver" in window)) {
+      return undefined;
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
