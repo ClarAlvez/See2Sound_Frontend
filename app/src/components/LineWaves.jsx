@@ -149,7 +149,12 @@ export default function LineWaves({
   useEffect(() => {
     if (!containerRef.current) return;
     const container = containerRef.current;
-    const renderer = new Renderer({ alpha: true, premultipliedAlpha: false });
+    let renderer;
+    try {
+      renderer = new Renderer({ alpha: true, premultipliedAlpha: false });
+    } catch {
+      return; // Keep the static background when WebGL is unavailable.
+    }
     const gl = renderer.gl;
     gl.clearColor(0, 0, 0, 0);
 
@@ -213,8 +218,13 @@ export default function LineWaves({
     }
 
     let animationFrameId;
+    let visible = true;
 
     function update(time) {
+      if (document.hidden || !visible) {
+        animationFrameId = null;
+        return;
+      }
       animationFrameId = requestAnimationFrame(update);
       program.uniforms.uTime.value = time * 0.001;
 
@@ -232,14 +242,30 @@ export default function LineWaves({
     }
     animationFrameId = requestAnimationFrame(update);
 
+    function resume() {
+      if (!document.hidden && visible && animationFrameId == null) {
+        animationFrameId = requestAnimationFrame(update);
+      }
+    }
+    document.addEventListener('visibilitychange', resume);
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      resume();
+    });
+    observer.observe(container);
+
     return () => {
       cancelAnimationFrame(animationFrameId);
+      observer.disconnect();
+      document.removeEventListener('visibilitychange', resume);
       window.removeEventListener('resize', resize);
       if (enableMouseInteraction) {
         gl.canvas.removeEventListener('mousemove', handleMouseMove);
         gl.canvas.removeEventListener('mouseleave', handleMouseLeave);
       }
-      container.removeChild(gl.canvas);
+      geometry.remove();
+      gl.deleteProgram(program.program);
+      gl.canvas.remove();
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
   }, [speed, innerLineCount, outerLineCount, warpIntensity, rotation, edgeFadeWidth, colorCycleSpeed, brightness, color1, color2, color3, enableMouseInteraction, mouseInfluence]);

@@ -25,8 +25,9 @@ function Navbar() {
       }
     }
 
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
+    // The inner accessibility dialog handles Escape first.
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isMenuOpen]);
 
   return (
@@ -59,6 +60,7 @@ function Navbar() {
         </button>
 
         <nav
+          key={location.key}
           id="menu-principal"
           className={`navbar-links ${isMenuOpen ? "is-open" : ""}`}
           aria-label="Navegação principal"

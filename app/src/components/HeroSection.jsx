@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
-import LineWaves from "./LineWaves";
+import { lazy } from "react";
+import DecorativeEffect from "./DecorativeEffect";
 import "../styles/HeroSection.css";
+const LineWaves = lazy(() => import("./LineWaves"));
 
 function HeroSection() {
   function scrollToAbout() {
@@ -9,18 +11,19 @@ function HeroSection() {
 
     if (aboutSection) {
       aboutSection.scrollIntoView({
-      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches || document.body.classList.contains("reduce-motion")
         ? "auto"
         : "smooth",
         block: "start",
       });
+      aboutSection.focus({ preventScroll: true });
     }
   }
 
   return (
     <section className="hero-section" aria-labelledby="titulo-principal">
       <div className="hero-line-waves" aria-hidden="true">
-        <LineWaves
+        <DecorativeEffect><LineWaves
           speed={0.2}
           innerLineCount={36}
           outerLineCount={22}
@@ -34,7 +37,7 @@ function HeroSection() {
           color3="#2500DE"
           enableMouseInteraction={false}
           mouseInfluence={1}
-        />
+        /></DecorativeEffect>
       </div>
 
       <div className="hero-content">
@@ -49,7 +52,7 @@ function HeroSection() {
         </p>
 
         <Link className="hero-button" to="/download">
-          Experimente o See2Sound
+          Conheça as plataformas
         </Link>
       </div>
 

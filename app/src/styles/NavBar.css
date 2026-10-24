@@ -28,6 +28,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   background: rgba(5, 0, 8, 0.94);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(149, 64, 255, 0.35);
@@ -38,12 +39,13 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  flex-shrink: 0;
+  min-width: 0;
   font-size: 1rem;
   font-weight: 800;
 }
 
 .logo-image {
+  flex-shrink: 0;
   width: 52px;
   height: 52px;
   object-fit: contain;
@@ -117,6 +119,8 @@
   .navbar-links {
     position: absolute;
     top: 68px;
+    max-height: calc(100dvh - 68px);
+    overflow-y: auto;
     left: 0;
     right: 0;
     display: none;

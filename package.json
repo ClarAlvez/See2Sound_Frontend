@@ -1,6 +1,11 @@
 {
-  "dependencies": {
-    "lucide-react": "^1.14.0",
-    "react-router-dom": "^7.15.0"
+  "name": "see2sound-frontend",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix app run dev",
+    "build": "npm --prefix app run build",
+    "lint": "npm --prefix app run lint",
+    "test": "npm --prefix app run test",
+    "preview": "npm --prefix app run preview"
   }
 }

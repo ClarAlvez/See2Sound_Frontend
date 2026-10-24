@@ -3,7 +3,6 @@
   transition:
     opacity 0.75s ease,
     transform 0.75s ease;
-  will-change: opacity, transform;
 }
 
 .reveal-on-scroll.is-visible {

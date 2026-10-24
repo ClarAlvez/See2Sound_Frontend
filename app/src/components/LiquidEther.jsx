@@ -989,9 +989,24 @@ export default function LiquidEther({
       }
       dispose() {
         try {
+          this.pause();
           window.removeEventListener('resize', this._resize);
           document.removeEventListener('visibilitychange', this._onVisibility);
           Mouse.dispose();
+          const simulation = this.output?.simulation;
+          Object.values(simulation?.fbos || {}).forEach(target => target.dispose());
+          const scenes = [this.output?.scene, ...Object.values(simulation || {}).map(pass => pass?.scene)];
+          const disposed = new Set();
+          scenes.filter(Boolean).forEach(scene => scene.traverse(object => {
+            const resources = [object.geometry, ...[object.material].flat()];
+            resources.filter(Boolean).forEach(resource => {
+              if (!disposed.has(resource)) {
+                resource.dispose();
+                disposed.add(resource);
+              }
+            });
+          }));
+          paletteTex.dispose();
           if (Common.renderer) {
             const canvas = Common.renderer.domElement;
             if (canvas && canvas.parentNode) canvas.parentNode.removeChild(canvas);
@@ -1008,7 +1023,9 @@ export default function LiquidEther({
     container.style.position = container.style.position || 'relative';
     container.style.overflow = container.style.overflow || 'hidden';
 
-    const webgl = new WebGLManager({
+    let webgl;
+    try {
+      webgl = new WebGLManager({
       $wrapper: container,
       autoDemo,
       autoSpeed,
@@ -1016,7 +1033,15 @@ export default function LiquidEther({
       takeoverDuration,
       autoResumeDelay,
       autoRampDuration
-    });
+      });
+    } catch {
+      Mouse.dispose();
+      paletteTex.dispose();
+      Common.renderer?.dispose();
+      Common.renderer?.forceContextLoss();
+      Common.renderer?.domElement.remove();
+      return; // Decorative effects must never prevent access to the page.
+    }
     webglRef.current = webgl;
 
     const applyOptionsFromProps = () => {
@@ -1074,6 +1099,7 @@ export default function LiquidEther({
     resizeObserverRef.current = ro;
 
     return () => {
+      if (resizeRafRef.current) cancelAnimationFrame(resizeRafRef.current);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       if (resizeObserverRef.current) {
         try {

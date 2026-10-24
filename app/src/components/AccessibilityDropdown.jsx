@@ -1,21 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Accessibility } from "lucide-react";
 import "../styles/AccessibilityDropdown.css";
-
-const STORAGE_KEY = "see2sound-accessibility";
-
-const DEFAULT_SETTINGS = {
-  highContrast: false,
-  visualFocus: false,
-  textSize: 100,
-  readableFont: false,
-  textSpacing: false,
-  underlineLinks: false,
-  largeCursor: false,
-  reduceMotion: false,
-  disableBackgroundEffects: false,
-  softBackgroundEffects: false,
-};
+import { STORAGE_KEY, DEFAULT_SETTINGS, sanitizeSettings } from "../lib/accessibilitySettings";
 
 const settingNames = {
   highContrast: "Alto contraste",
@@ -32,9 +18,7 @@ const settingNames = {
 function readSavedSettings() {
   try {
     const savedSettings = localStorage.getItem(STORAGE_KEY);
-    return savedSettings
-      ? { ...DEFAULT_SETTINGS, ...JSON.parse(savedSettings) }
-      : DEFAULT_SETTINGS;
+    return sanitizeSettings(savedSettings ? JSON.parse(savedSettings) : null);
   } catch {
     return DEFAULT_SETTINGS;
   }
@@ -76,10 +60,11 @@ function AccessibilityDropdown() {
   useEffect(() => {
     if (!isOpen) return undefined;
 
-    window.requestAnimationFrame(() => closeRef.current?.focus());
+    const frame = window.requestAnimationFrame(() => closeRef.current?.focus());
 
     function handleKeyDown(event) {
       if (event.key === "Escape") {
+        event.stopPropagation();
         setIsOpen(false);
         triggerRef.current?.focus();
       }
@@ -94,6 +79,7 @@ function AccessibilityDropdown() {
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("pointerdown", handlePointerDown);
     return () => {
+      window.cancelAnimationFrame(frame);
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("pointerdown", handlePointerDown);
     };
@@ -163,7 +149,10 @@ function AccessibilityDropdown() {
   ];
 
   return (
-    <div className="accessibility-dropdown" ref={containerRef}>
+    <div className="accessibility-dropdown" ref={containerRef}
+      onBlur={(event) => {
+        if (event.relatedTarget && !event.currentTarget.contains(event.relatedTarget)) setIsOpen(false);
+      }}>
       <button
         ref={triggerRef}
         type="button"
@@ -218,7 +207,7 @@ function AccessibilityDropdown() {
           <div className="accessibility-options">
             <label className="accessibility-option range-option" htmlFor="text-size">
               <div>
-                <strong>Tamanho do texto</strong>
+                <strong id="text-size-label">Tamanho do texto</strong>
                 <output htmlFor="text-size">{settings.textSize}%</output>
               </div>
 
@@ -229,6 +218,7 @@ function AccessibilityDropdown() {
                 max="150"
                 step="10"
                 value={settings.textSize}
+                aria-labelledby="text-size-label"
                 aria-describedby="text-size-help"
                 onChange={(event) =>
                   updateSetting("textSize", Number(event.target.value))
@@ -240,7 +230,7 @@ function AccessibilityDropdown() {
             {toggleOptions.map((option) => (
               <label className="accessibility-option" key={option.key}>
                 <span className="accessibility-option-copy">
-                  <strong>{option.title}</strong>
+                  <strong id={`${option.key}-label`}>{option.title}</strong>
                   <span id={`${option.key}-help`}>{option.description}</span>
                 </span>
 
@@ -248,6 +238,7 @@ function AccessibilityDropdown() {
                   type="checkbox"
                   className="toggle-input"
                   checked={settings[option.key]}
+                  aria-labelledby={`${option.key}-label`}
                   aria-describedby={`${option.key}-help`}
                   onChange={(event) =>
                     updateSetting(option.key, event.target.checked)
