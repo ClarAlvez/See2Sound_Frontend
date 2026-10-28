@@ -81,25 +81,6 @@ See2Sound_Frontend/
 └── AUDITORIA_PRE_APRESENTACAO_WEB.md
 ```
 
-## Run and validate
-
-Use Node.js 20.19+ or 22.12+ (as required by Vite) and npm. From the repository root:
-
-```sh
-npm --prefix app ci
-npm run dev
-npm run lint
-npm test
-npm run build
-npm run preview
-```
-
-The production output is `app/dist`. Deploy these static files with an SPA fallback to `index.html` for `/download` and unknown application routes. Do not expose the development server as the production website. The current app assumes deployment at the domain root; subdirectory hosting requires coordinating Vite `base` and router `basename`.
-
-The website currently presents the project and application availability. It has no API integration, upload, video player or downloadable application binaries. No environment variables or backend credentials are needed. The processing steps describe the broader See2Sound system, not a web upload flow.
-
-See [the pre-presentation audit](AUDITORIA_PRE_APRESENTACAO_WEB.md) for evidence, limitations and the demonstration checklist.
-
 ---
 
 ## ♿ Accessibility
